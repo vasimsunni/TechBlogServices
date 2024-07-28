@@ -100,3 +100,22 @@ Integration tests verify that different components of the application work toget
 4. **Test Coverage**: Aim for comprehensive test coverage, including edge cases and error conditions, to ensure the reliability of the system.
 
 Integration tests with a separate relational test database provide a thorough validation of your application’s interactions with a real database, ensuring that the system operates correctly and reliably in a production-like environment.
+
+## Multiple Environment Support
+
+TechBlogServices supports multiple environments, including local IIS and Docker environments, to ensure flexibility and consistency across different deployment scenarios.
+
+### Local Development
+1. **Configuration**: Use `appsettings.json` and `appsettings.Test.json` for local development settings. This file includes configurations specific to the development environment, such as local database connection strings and development-specific feature toggles.
+2. **Environment Variables**: Set environment variables in your local environment to override configuration settings as needed. This helps in managing settings without altering the codebase.
+
+### Docker Environment
+1. **Docker Configuration**: Use Docker to containerize the application and its dependencies. Docker provides a consistent environment for development, testing, and production.
+2. **Docker Compose**: Define services and their configurations in a `docker-compose.yml` file. This file includes definitions for the application container, database container, and any other dependencies.
+3. **Environment Variables**: Configure environment variables in the `docker-compose.override.yml` file to manage different settings for the Docker environment.
+
+### Managing Multiple Environments
+1. **Environment-Specific Configuration Files**: Use environment-specific configuration files (e.g., `appsettings.json`, `appsettings.Test.json`) to manage settings for different environments.
+2. **Different Local Servers**: Use 'launchSettings.json' to configure different server on your local environment.
+
+By supporting multiple environments, TechBlogServices ensures that the application can be developed, tested, and deployed consistently across various scenarios, including local development and Docker-based environments.
