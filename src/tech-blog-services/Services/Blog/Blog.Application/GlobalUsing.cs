@@ -1,0 +1,13 @@
+﻿global using Blog.Application.Data;
+global using Blog.Application.Dtos;
+global using Blog.Application.Exceptions;
+global using Blog.Application.Extensions;
+global using Blog.Application.Helpers;
+global using Blog.Domain.Enums;
+global using Blog.Domain.Models;
+global using Blog.Domain.ValueObjects;
+global using BuildingBlocks.CQRS;
+global using BuildingBlocks.Exceptions;
+global using BuildingBlocks.Pagination;
+global using FluentValidation;
+global using Microsoft.EntityFrameworkCore;
