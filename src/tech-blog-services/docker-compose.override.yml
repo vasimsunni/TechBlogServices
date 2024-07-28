@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+ techblogdb:
+  container_name: techblogdb
+  environment:
+   - ACCEPT_EULA=Y
+   - SA_PASSWORD=SA#123456
+  restart: always
+  ports:
+   - "1133:1433"
+
+ techblogtestdb:
+  container_name: techblogtestdb
+  environment:
+   - ACCEPT_EULA=Y
+   - SA_PASSWORD=SA#123456
+  restart: always
+  ports:
+   - "1233:1433"
+
+ blog.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=techblogdb;Database=techblogdb;User id=sa;Password=SA#123456;Encrypt=False;TrustServerCertificate=True
+    ports:
+      - "6005:8080"
+      - "6055:8081"
+    depends_on:
+     - techblogdb
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore.Storage;
+
 namespace Blog.Application.Data
 {
     public interface IApplicationDbContext
@@ -7,6 +9,7 @@ namespace Blog.Application.Data
         public DbSet<Article> Articles { get; }
         public DbSet<Category> Categories { get; }
         public DbSet<ArticleCategory> ArticleCategories { get; }
+
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

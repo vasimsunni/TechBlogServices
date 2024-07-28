@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Blog.IntegrationTests": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
