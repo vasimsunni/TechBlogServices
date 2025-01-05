@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Blog.APi.Helpers
+namespace Blog.API.Helpers
 {
     public static class JwtTokenHelper
     {

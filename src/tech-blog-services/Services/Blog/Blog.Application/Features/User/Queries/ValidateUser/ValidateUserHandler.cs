@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Encryption;
+using Microsoft.Extensions.Logging;
 
 namespace Blog.Application.Features.User.Queries.ValidateUser
 {

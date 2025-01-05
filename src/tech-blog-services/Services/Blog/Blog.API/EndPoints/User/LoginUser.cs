@@ -1,4 +1,4 @@
-﻿using Blog.APi.Helpers;
+﻿using Blog.API.Helpers;
 using Blog.Application.Features.User.Queries.ValidateUser;
 
 
@@ -15,8 +15,12 @@ namespace Blog.API.EndPoints.User
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/users/login", async (LoginUserRequest request, ISender sender) =>
+            app.MapPost("/users/login", async (LoginUserRequest request, ISender sender, ILogger<LoginUser> logger) =>
             {
+                logger.LogInformation("User loggedin with email:"+request.Email);
+
+                logger.LogDebug("User loggedin with email:" + request.Email);
+
                 var command = request.Adapt<ValidateUserQuery>();
 
                 var result = await sender.Send(command);

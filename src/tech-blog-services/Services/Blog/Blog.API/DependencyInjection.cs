@@ -1,4 +1,4 @@
-﻿using Blog.APi.Helpers;
+﻿using Blog.API.Helpers;
 using BuildingBlocks.Exceptions.Handler;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
