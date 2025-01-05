@@ -15,6 +15,7 @@ TechBlogServices is a blog platform built using a range of modern software desig
 - **Entity Framework Core**: An ORM for data access, providing an abstraction over database interactions.
 - **Authentication and Authorization**: Secure API endpoints using JWT tokens.
 - **xUnit**: A testing framework for ensuring code quality and reliability through automated tests.
+- **ELK Stack (Elasticsearch, Logstash, Kibana)**: Used for centralized logging and analytics.
 
 ## Architecture Overview
 TechBlogServices is structured following the principles of Clean Architecture, Vertical Slice Architecture, and DDD. This ensures a clear separation of concerns, making the system easier to develop, test, and maintain.
@@ -33,11 +34,24 @@ TechBlogServices is structured following the principles of Clean Architecture, V
 - Configures Entity Framework Core for database interactions.
 - Implements repositories for data access.
 - Includes Abstract Validation and Custom Exception Handling.
+- Configures Serilog to sink logs to Elasticsearch for centralized logging.
 
 ### Presentation Layer
 - Contains the minimal API endpoints.
 - Uses Carter for routing and request handling.
 - Secures APIs using JWT authentication.
+
+## ELK Stack Integration
+TechBlogServices integrates the ELK stack for centralized logging and analytics:
+
+- **Elasticsearch**: Configured as a Docker container on port 9200 to store and search logs.
+- **Kibana**: Configured as a Docker container on port 5601 to visualize and analyze logs.
+- **Serilog**: Configured to sink logs to Elasticsearch, providing structured logging capabilities.
+
+### Docker Configuration
+The ELK stack services are defined in the Docker Compose file:
+- **Elasticsearch**: Accessible at `https://localhost:9200`.
+- **Kibana**: Accessible at `https://localhost:5601`.
 
 ## CQRS Pattern
 CQRS (Command Query Responsibility Segregation) is a design pattern that separates the read and write operations of a system. This separation is beneficial for several reasons:
@@ -57,8 +71,16 @@ Vertical Slice Architecture is a design approach where the system is organized b
 
 In TechBlogServices, each vertical slice includes:
 - **Command Handlers**: For processing commands related to the feature.
-- **Query Handlers**: For retrieving data related to the feature.	
+- **Query Handlers**: For retrieving data related to the feature.
 - **Validation and Exception Handling**: Specific to the feature.
+
+## Project URLs
+
+- **TechBlog DB**: [http://localhost:1133](http://localhost:1133)
+- **TechBlog Test DB**: [http://localhost:1233](http://localhost:1233)
+- **Blog API**: [https://localhost:6055](https://localhost:6055)
+- **Elasticsearch**: [https://localhost:9200](https://localhost:9200)
+- **Kibana**: [https://localhost:5601](https://localhost:5601)
 
 ## API Endpoints
 
@@ -111,11 +133,11 @@ TechBlogServices supports multiple environments, including local IIS and Docker 
 
 ### Docker Environment
 1. **Docker Configuration**: Use Docker to containerize the application and its dependencies. Docker provides a consistent environment for development, testing, and production.
-2. **Docker Compose**: Define services and their configurations in a `docker-compose.yml` file. This file includes definitions for the application container, database container, and any other dependencies.
+2. **Docker Compose**: Define services and their configurations in a `docker-compose.yml` file. This file includes definitions for the application container, database container, Elasticsearch, and Kibana containers.
 3. **Environment Variables**: Configure environment variables in the `docker-compose.override.yml` file to manage different settings for the Docker environment.
 
 ### Managing Multiple Environments
 1. **Environment-Specific Configuration Files**: Use environment-specific configuration files (e.g., `appsettings.json`, `appsettings.Test.json`) to manage settings for different environments.
-2. **Different Local Servers**: Use 'launchSettings.json' to configure different server on your local environment.
+2. **Different Local Servers**: Use 'launchSettings.json' to configure different servers on your local environment.
 
 By supporting multiple environments, TechBlogServices ensures that the application can be developed, tested, and deployed consistently across various scenarios, including local development and Docker-based environments.
