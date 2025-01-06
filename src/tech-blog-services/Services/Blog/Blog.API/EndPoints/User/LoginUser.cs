@@ -19,8 +19,6 @@ namespace Blog.API.EndPoints.User
             {
                 logger.LogInformation("User loggedin with email:"+request.Email);
 
-                logger.LogDebug("User loggedin with email:" + request.Email);
-
                 var command = request.Adapt<ValidateUserQuery>();
 
                 var result = await sender.Send(command);
